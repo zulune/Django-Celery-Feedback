@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css"  media="screen,projection"/>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>
+      {% block title %}
+        Django Celery
+      {% endblock %}
+    </title>
+    <style media="screen">
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto;
+      }
+    </style>
+    {% block headcss %}{% endblock %}
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">Logo</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'photos:photo-list' %}">Photos</a></li>
+            <li><a href="{% url 'feedback:feedback' %}">Feedback</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="section">
+        <div class="row">
+          <div class="coll s9"><a href="/"><h3>Celery django</h3></a></div>
+          <div class="col s3">
+            <button data-target="feedback-modal" class="waves-effect waves-light btn modal-trigger">Got Feedback?</button>
+          </div>
+        </div>
+        <div>
+          <div id="feedback-modal" class="modal">
+            <div class="modal-content">
+              <h4>We feedback</h4>
+              <form action="{% url 'feedback:feedback' %}" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <i class="mdi-content-send right"></i>
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+          </div>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+      </div>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Django Celery</h5>
+            <p class="grey-text text-lighten-4">Test project for how use celery.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    {% block extrabody %}{% endblock %}
+  </body>
+</html>

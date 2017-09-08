@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{title}} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <h1>{{object.name}}</h1>
+    <p>{{object.description|safe}}</p>
+    <strong>Open: </strong><i>{{object.open_time}}</i><br>
+    <strong>Close: </strong><i>{{object.close_time}}</i>
+  </div>
+{% endblock %}
