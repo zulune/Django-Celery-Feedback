@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Registration | {{ block.super }}
+{% endblock %}
+{% block headcss %}
+<style>
+  .errorlist{
+    color:#ff0000;
+  }
+</style>
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col s10 offset-s1">
+      <h1>Registration</h1>
+      <form class="" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+      <button type="submit" class="btn waves-effect waves-light">Send <i class="material-icons right">send</i></button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

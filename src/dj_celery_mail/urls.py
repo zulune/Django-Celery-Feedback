@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'', include('institution_list.urls', namespace="institution")),
     url(r'^feedback/', include('feedback.urls', namespace="feedback")),
     url(r'^photos/', include('photos.urls', namespace="photos")),
+    url(r'^account/', include('account.urls', namespace="account")),
 ]

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ object.username }} Profile | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <h1>Profile</h1>
+    <h3><strong>Fullname: </strong>{{ user.get_full_name }}</h3>
+    <h3><strong>Username: </strong>{{ object.username }}</h3>
+    <h4><strong>Notification: </strong>{{ object.profile.notification }}</h4>
+  </div>
+{% endblock %}

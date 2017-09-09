@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Login | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col s8 offset-s3">
+      <form class="" method="post">
+        <h3>Login</h3>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn waves-effect waves-light">
+          Login <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

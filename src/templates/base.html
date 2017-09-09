@@ -34,6 +34,13 @@
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'photos:photo-list' %}">Photos</a></li>
             <li><a href="{% url 'feedback:feedback' %}">Feedback</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'account:profile' request.user.username %}">{{request.user.username}}</a></li>
+            <li><a href="{% url 'account:logout' %}">LogOut</a></li>
+            {% else %}
+            <li><a href="{% url 'account:login' %}">SignIp</a></li>
+            <li><a href="{% url 'account:register' %}">SignUp</a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>
