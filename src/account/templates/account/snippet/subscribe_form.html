@@ -1,0 +1,14 @@
+{% if user.is_authenticated %}
+<form class="" action="{% url 'account:subscribe' %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="notification" value="{{ user.profile.notification }}">
+  <button type="submit" class="btn-floating btn-large waves-effect waves-light
+    {% if user.profile.notification %}red{% else %}blue{% endif %}">
+    {% if user.profile.notification %}
+      <i class="material-icons">cancel</i>
+    {% else %}
+      <i class="material-icons">add</i>
+    {% endif %}
+  </button>
+</form>
+{% endif %}

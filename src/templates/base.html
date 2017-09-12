@@ -13,7 +13,7 @@
       {% endblock %}
     </title>
     <style media="screen">
-    body {
+      body {
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -22,31 +22,119 @@
       main {
         flex: 1 0 auto;
       }
+
+      .messages {
+        background: #26a69a;
+        padding: 15px;
+        text-align: center;
+        font-family: cursive;
+        color: #EEF;
+        font-size: 20px;
+        border-radius: 20%;
+      }
     </style>
     {% block headcss %}{% endblock %}
   </head>
   <body>
     <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">Logo</a>
+      <nav class="blue">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="/" class="brand-logo">Logo</a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="{% url 'photos:photo-list' %}">Photos</a></li>
-            <li><a href="{% url 'feedback:feedback' %}">Feedback</a></li>
+            <li>
+              <a href="/">
+                <i class="material-icons">home</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'photos:photo-list' %}">
+                <i class="material-icons">image</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'feedback:feedback' %}">
+                <i class="material-icons">email</i>
+              </a>
+            </li>
             {% if request.user.is_authenticated %}
-            <li><a href="{% url 'account:profile' request.user.username %}">{{request.user.username}}</a></li>
-            <li><a href="{% url 'account:logout' %}">LogOut</a></li>
+            <li>
+              <a href="{% url 'account:profile' request.user.username %}">
+                <i class="material-icons">person</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'account:logout' %}">
+                <i class="material-icons">exit_to_app</i>
+              </a>
+            </li>
             {% else %}
-            <li><a href="{% url 'account:login' %}">SignIp</a></li>
-            <li><a href="{% url 'account:register' %}">SignUp</a></li>
+            <li>
+              <a href="{% url 'account:login' %}">
+                <i class="material-icons">input</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'account:register' %}">
+                <i class="material-icons">person_add</i>
+              </a>
+            </li>
             {% endif %}
           </ul>
+          <ul id="nav-mobile" class="side-nav">
+            <li>
+              <a href="/">
+                <i class="material-icons">home</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'photos:photo-list' %}">
+                <i class="material-icons">image</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'feedback:feedback' %}">
+                <i class="material-icons">email</i>
+              </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li>
+              <a href="{% url 'account:profile' request.user.username %}">
+                <i class="material-icons">person</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'account:logout' %}">
+                <i class="material-icons">exit_to_app</i>
+              </a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'account:login' %}">
+                <i class="material-icons">input</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'account:register' %}">
+                <i class="material-icons">person_add</i>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse">
+            <i class="material-icons">menu</i>
+          </a>
         </div>
       </nav>
     </div>
     <div class="container">
       <div class="section">
+        {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
         <div class="row">
           <div class="coll s9"><a href="/"><h3>Celery django</h3></a></div>
           <div class="col s3">
@@ -74,7 +162,7 @@
         {% endblock %}
       </div>
     </div>
-    <footer class="page-footer">
+    <footer class="page-footer blue">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
@@ -102,6 +190,11 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $(".button-collapse").sideNav();
+      })(jQuery);
+    </script>
     {% block extrabody %}{% endblock %}
   </body>
 </html>

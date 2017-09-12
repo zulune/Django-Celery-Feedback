@@ -1,5 +1,6 @@
 from django import forms
 
+from account.models import Profile
 from django.contrib.auth import get_user_model
 
 User = get_user_model()

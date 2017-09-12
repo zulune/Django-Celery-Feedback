@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^feedback/', include('feedback.urls', namespace="feedback")),
     url(r'^photos/', include('photos.urls', namespace="photos")),
     url(r'^account/', include('account.urls', namespace="account")),
+    url(r'^notification/', include('notification.urls', namespace="notification")),
 ]

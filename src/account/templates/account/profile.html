@@ -6,9 +6,40 @@
 
 {% block content %}
   <div class="row">
-    <h1>Profile</h1>
-    <h3><strong>Fullname: </strong>{{ user.get_full_name }}</h3>
-    <h3><strong>Username: </strong>{{ object.username }}</h3>
-    <h4><strong>Notification: </strong>{{ object.profile.notification }}</h4>
+    <div class="">
+      {% if request.user.is_authenticated %}
+        {% include "account/snippet/subscribe_form.html" with user=request.user %}
+      {% else %}
+        <p>Login to see subscribe form</p>
+      {% endif %}
+    </div>
+    <div class="col s5">
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="http://materializecss.com/images/yuna.jpg" alt="profile-image" class="circle">
+        </li>
+        <li class="collection-item">
+          <span>{{ user.get_full_name }}</span>
+        </li>
+        <li class="collection-item">
+          {{ user.email }}
+        </li>
+        <li class="collection-item">
+          {% if user.profile.notification %}
+            <i class="material-icons green">mail</i>
+          {% else %}
+            <i class="material-icons red">mail</i>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+    <div class="col s7">
+      <ul class="collection">
+       <li class="collection-item dismissable"><div>Send mail<a href="{% url 'notification:send' %}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+       <li class="collection-item dismissable"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+       <li class="collection-item dismissable"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+       <li class="collection-item dismissable"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+     </ul>
+    </div>
   </div>
 {% endblock %}
